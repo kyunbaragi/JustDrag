@@ -1,0 +1,26 @@
+﻿<Window x:Class="JustDrag.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="MainWindow" AllowsTransparency="True" WindowState="Maximized" 
+    WindowStyle="None" Background="#01000000">
+    <Canvas 
+        Height="{DynamicResource {x:Static SystemParameters.MaximizedPrimaryScreenHeightKey}}" 
+        Width="{DynamicResource {x:Static SystemParameters.MaximizedPrimaryScreenWidthKey}}" >
+        <Path Stroke="Black" Fill="White" Opacity="0.5">
+            <Path.Data>
+                <CombinedGeometry GeometryCombineMode="Exclude">
+                    <CombinedGeometry.Geometry1>
+                        <RectangleGeometry x:Name="rectScreen" Rect="0,0,0,0">
+                        </RectangleGeometry>
+                    </CombinedGeometry.Geometry1>
+                    <CombinedGeometry.Geometry2>
+                        <RectangleGeometry x:Name="rectDraged" Rect="0,0,0,0">
+                        </RectangleGeometry>
+                    </CombinedGeometry.Geometry2>
+                </CombinedGeometry>
+            </Path.Data>
+        </Path>
+        <Button Opacity="1.0" x:Name="btnDragCapture" Content="시작하기" Click="btnDragCaptureClick"
+                Height="70" Canvas.Left="1470" Canvas.Top="846" Width="146" />
+    </Canvas>
+</Window>
