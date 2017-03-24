@@ -23,5 +23,14 @@ namespace JustDrag
         {
             InitializeComponent();
         }
+
+        private void btnCaptureClick(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            this.Hide();
+            mainWindow.ShowDialog();
+            this.Show();
+            MessageBox.Show("야호");
+        }
     }
 }

@@ -21,7 +21,6 @@ namespace JustDrag
     public partial class MainWindow : Window
     {
         private bool isClicked = false;
-        private bool isActivated = false;
         private Rect myRect;
         private Point ptClicked;
 
@@ -38,23 +37,15 @@ namespace JustDrag
             
         }
 
-        private void btnDragCaptureClick(object sender, RoutedEventArgs e)
-        {
-            isActivated = !isActivated;
-        }
-
         protected void MainWindow_MouseDown(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            if (isActivated)
-            {
-                isClicked = true;
+            isClicked = true;
 
-                ptClicked.X = myRect.X = e.GetPosition(this).X;
-                ptClicked.Y = myRect.Y = e.GetPosition(this).Y;
-                myRect.Width = myRect.Height = 1;
+            ptClicked.X = myRect.X = e.GetPosition(this).X;
+            ptClicked.Y = myRect.Y = e.GetPosition(this).Y;
+            myRect.Width = myRect.Height = 1;
 
-                rectDraged.Rect = myRect;
-            }
+            rectDraged.Rect = myRect;
         }
 
         protected void MainWindow_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
@@ -98,11 +89,7 @@ namespace JustDrag
 
         protected void MainWindow_MouseUp(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            if(isActivated)
-            {
-                isClicked = false;
-                MessageBox.Show("되자나 ㅅㅂ");
-            }
+            isClicked = false;
         }
     }
 }
