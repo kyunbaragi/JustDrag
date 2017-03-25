@@ -40,7 +40,7 @@ namespace JustDrag
         protected void MainWindow_MouseDown(object sender, System.Windows.Input.MouseEventArgs e)
         {
             /*
-             * @ToDo
+             * ToDo:
              *      오른쪽 마우스가 클릭 됐을 때는 필터링
              */
 
@@ -97,16 +97,16 @@ namespace JustDrag
             isClicked = false;
 
             /*
-             * @Todo 
+             * ToDo:
              *      Screen에서 드래그 한 부분 이미지 복사하기...
              *      어떻게 하는진 나도 모름 ㅋ
-             * @Todo
+             * ToDo:
              *      오른쪽 마우스가 클릭 됐을 때는 필터링
              */
         }
 
         /*
-         *  @ToDo
+         *  ToDo:
          *      드래그 하던 도중 ESC 누르면 드래그 한 거 취소하고 Controller로 돌아가기
          *      햇갈리면 윈도우 캡쳐도구랑 똑같이 기능하게
          */
