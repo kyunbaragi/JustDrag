@@ -24,6 +24,13 @@ namespace JustDrag
         private Rect myRect;
         private Point ptClicked;
 
+        private int test = 0; // 테스트용 작성자가 곧 지울 예정
+
+        public int getTest() // 테스트용 작성자가 곧 지울 예정
+        {
+            return this.test;
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -34,14 +41,12 @@ namespace JustDrag
             base.MouseDown += MainWindow_MouseDown;
             base.MouseMove += MainWindow_MouseMove;
             base.MouseUp += MainWindow_MouseUp;
-            
         }
 
         protected void MainWindow_MouseDown(object sender, System.Windows.Input.MouseEventArgs e)
         {
             /*
-             * ToDo:
-             *      오른쪽 마우스가 클릭 됐을 때는 필터링
+             * @todo 오른쪽 마우스가 클릭 됐을 때는 필터링
              */
 
             isClicked = true;
@@ -95,20 +100,19 @@ namespace JustDrag
         protected void MainWindow_MouseUp(object sender, System.Windows.Input.MouseEventArgs e)
         {
             isClicked = false;
-
+            test++; // 테스트용 작성자가 곧 지울 예정
+            
             /*
-             * ToDo:
-             *      Screen에서 드래그 한 부분 이미지 복사하기...
-             *      어떻게 하는진 나도 모름 ㅋ
-             * ToDo:
-             *      오른쪽 마우스가 클릭 됐을 때는 필터링
+             * @todo Screen에서 드래그 한 부분 이미지 복사하기, 방법 찾아보기
+             */
+            
+            /*
+             * @todo 오른쪽 마우스가 클릭 됐을 때는 필터링
              */
         }
 
         /*
-         *  ToDo:
-         *      드래그 하던 도중 ESC 누르면 드래그 한 거 취소하고 Controller로 돌아가기
-         *      햇갈리면 윈도우 캡쳐도구랑 똑같이 기능하게
+         *  @todo 드래그 하던 도중 ESC 누르면 드래그 한 거 취소하고 Controller로 돌아가기
          */
     }
 }
