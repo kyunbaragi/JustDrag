@@ -26,20 +26,15 @@ namespace JustDrag
 
         private void btnCaptureClick(object sender, RoutedEventArgs e)
         {
-            // 협업용 주석 예제여서 일반 주석 사용, 문서화 주석은 /** 혹은 /// 로 시작
+            // 문서화 주석은 /** */ 혹은 /// 로 시작
+            // 일반 주석은 /* */ 혹은 //
             /* 
              * @author  이영식
              * @date    2017-03-25
-             * @todo    버튼을 누를 때마다 MainWindow를 만드므로, 생성자에서 한 번 만들도록 수정 [기한 없음] \n
              * @ref     http://jooji88.tistory.com/101 
-             * @brief   CANCELED     [ WAITING - 미배당 | ASSIGNED - 배당됨 | CANCELED - 취소됨 ]
-             * @details ShowDialog는 뮤텍스 같이 레이스 컨디션을 막을 용도로 사용해야 하고 \n
-             *          매번 윈도우를 재생성해야 함... 따라서 윈도우는 복잡하게 작성하지 말고 \n
-             *          매번 재생성하기 힘든 내용은 부모 윈도우에서 보관하다 넘겨주는 식으로 사용 \n
-             *          
-             *          [WAITING - 맡아줬으면 하는 그룹, 특정 개발자 혹은 ANONYMOUS(아무나)]
-             *          [ASSIGNED - 개발자명, 기능 구현이 완료되면 주석 삭제 혹은 문서화 주석으로 변경]
-             *          [CANCELED - 취소된 이유를 기억할 필요가 있는 경우에 작성, 문서화 하지는 않음]
+             * @brief   showDialog는 한 번 닫히면 다시 사용불가, 새로 윈도우를 할당해야함
+             * @details showDialog로 사용될 윈도우는 가볍게 작성하고 \n
+             *          매번 만들기 번거로운 객체를 사용해야 하면 부모에 보관하다 전달
              */
             MainWindow mainWindow = new MainWindow();
 
