@@ -4,17 +4,67 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JustDrag"
-        mc:Ignorable="d" Title="JustDrag" Height="80" Width="360" >
+        mc:Ignorable="d" Title="JustDrag" Height="80" Width="320" 
+        Icon="./icon/just_drag.ico">
+            
+    
+    <Window.Resources>
+        <Image x:Key="Cut" Source="./icon/cut.png"/>
+        <Image x:Key="Translate" Source="./icon/translate.png"/>
+        <Image x:Key="Cancel" Source="./icon/cancel.png"/>
+        <Image x:Key="Option" Source="./icon/option.png"/>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*"/>            
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnCapture" Grid.Column ="0" Content="Capture" Click="btnCaptureClick"/>
-        <Button x:Name="btnTransform" Grid.Column ="1" Content="Image2Text"/>
-        <Button x:Name="btnReset" Grid.Column ="2" Content="Reset"/>
-        <Button x:Name="btnSettings" Grid.Column ="3" Content="Settings"/>
+        <Button x:Name="btnCapture" Grid.Column ="0" Click="btnCaptureClick" Background="White">
+            <StackPanel Orientation="Horizontal">
+                <Image Name="cutImg" Source="./icon/cut.png" Margin="0, 8, 8, 8"/>
+                <TextBlock Text="새로 만들기(N)" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <!--<Button x:Name="btnTransform" Grid.Column ="1">
+            <StackPanel Orientation="Horizontal">
+                <Image Name="transImg" Source="icon/translate.png" Margin="0, 5, 5, 5"/>
+                <TextBlock Text="Img2Txt" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>-->
+        <Button x:Name="btnReset" Grid.Column ="1" Background="White">
+            <StackPanel Orientation="Horizontal">
+                <Image Name="cancelImg" Source="./icon/cancel.png" Margin="0, 8, 8, 8"/>
+                <TextBlock Text="취소(C)" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btnSettings" Grid.Column ="2" Background="White">
+            <StackPanel Orientation="Horizontal">
+                <Image Name="settingImg" Source="./icon/option.png" Margin="0, 8, 8, 8"/>
+                <TextBlock Text="옵션(O) " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+        </Button>
     </Grid>
 </Window>
+
+<!--<Button.Template>
+    <ControlTemplate>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="icon/cut.png" Grid.Column="0" Margin="5, 5, 5, 5"/>
+            <TextBlock Text="Capture" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="Button.IsMouseOver" Value="True">
+
+            </Trigger>
+            <Trigger Property="Button.IsPressed" Value="True">
+
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+</Button.Template>-->    
