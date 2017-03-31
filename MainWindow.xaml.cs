@@ -104,7 +104,7 @@ namespace JustDrag
             test++; // 테스트용 작성자가 곧 지울 예정
 
 
-            if (rectDraged.Rect.Width > 0 && rectDraged.Rect.Height > 0)
+            if (rectDraged.Rect.Width >= 1 && rectDraged.Rect.Height >= 1)
             {
                 using (var screenBmp = new Bitmap((int)rectDraged.Rect.Width, (int)rectDraged.Rect.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb))
                 {
