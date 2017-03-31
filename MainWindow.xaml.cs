@@ -117,15 +117,15 @@ namespace JustDrag
                         BitmapSizeOptions.FromEmptyOptions());
                 }
             }
+
+            /*
+             * @todo 오른쪽 마우스가 클릭 됐을 때는 필터링
+             */
         }
-        /*
-         * @todo 오른쪽 마우스가 클릭 됐을 때는 필터링
-         */
-    }
 
         /*
-         *  @todo 드래그 하던 도중 ESC 누르면 드래그 한 거 취소하고 Controller로 돌아가기
-         */
+        *  @todo 드래그 하던 도중 ESC 누르면 드래그 한 거 취소하고 Controller로 돌아가기
+        */
         protected void MainWindow_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
