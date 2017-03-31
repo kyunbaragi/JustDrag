@@ -132,16 +132,10 @@ namespace JustDrag
         protected void MainWindow_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
-            {
-                this.DialogResult = false;
                 this.Close();
-            }
 
             if (Keyboard.Modifiers == ModifierKeys.Alt && e.SystemKey == Key.F4)
-            {
-                this.DialogResult = true;
-                this.Close();
-            }
+                Application.Current.Shutdown();
         }
     }
 }

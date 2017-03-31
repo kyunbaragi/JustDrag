@@ -39,8 +39,7 @@ namespace JustDrag
             MainWindow mainWindow = new MainWindow();
 
             Hide();
-            if ((bool)mainWindow.ShowDialog())    // ShowDialog -> Window를 Modal(동기식)로 불러옴
-                this.Close();
+            mainWindow.ShowDialog();    // ShowDialog -> Window를 Modal(동기식)로 불러옴
             Show();
 
             /*
