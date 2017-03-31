@@ -1,0 +1,8 @@
+﻿<Window x:Class="JustDrag.CapturedWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CapturedWindow">
+    <Grid>
+        <Image x:Name="CapturedImage" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
