@@ -70,7 +70,7 @@ namespace JustDrag
                 w = e.GetPosition(this).X - ptClicked.X;
                 h = e.GetPosition(this).Y - ptClicked.Y;
 
-                if (w < 0) 
+                if (w < 0)
                 {
                     myRect.X = x + w < 0 ? 0 : x + w;
                     myRect.Width = -w;
@@ -92,7 +92,7 @@ namespace JustDrag
                     myRect.Y = y;
                     myRect.Height = h;
                 }
-                
+
                 rectDraged.Rect = myRect;
             }
             e.Handled = true;
@@ -104,7 +104,7 @@ namespace JustDrag
             test++; // 테스트용 작성자가 곧 지울 예정
 
 
-            if( rectDraged.Rect.Width > 0 && rectDraged.Rect.Height > 0 )
+            if (rectDraged.Rect.Width > 0 && rectDraged.Rect.Height > 0)
             {
                 using (var screenBmp = new Bitmap((int)rectDraged.Rect.Width, (int)rectDraged.Rect.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb))
                 {
@@ -133,6 +133,13 @@ namespace JustDrag
         {
             if (e.Key == Key.Escape)
             {
+                this.DialogResult = false;
+                this.Close();
+            }
+
+            if (Keyboard.Modifiers == ModifierKeys.Alt && e.SystemKey == Key.F4)
+            {
+                this.DialogResult = true;
                 this.Close();
             }
         }

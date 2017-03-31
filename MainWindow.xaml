@@ -1,7 +1,8 @@
 ﻿<Window x:Class="JustDrag.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="JustDrag" AllowsTransparency="True" WindowState="Maximized"  WindowStyle="None" ResizeMode="NoResize" Background="#01000000" WindowStartupLocation="CenterScreen" KeyDown="MainWindow_KeyDown">
+    Title="JustDrag" AllowsTransparency="True" WindowState="Maximized"  WindowStyle="None" ResizeMode="NoResize" Background="#01000000" WindowStartupLocation="CenterScreen"
+    KeyDown="MainWindow_KeyDown">
     <Canvas >
         <!--Height="{DynamicResource {x:Static SystemParameters.MaximizedPrimaryScreenHeightKey}}" 
         Width="{DynamicResource {x:Static SystemParameters.MaximizedPrimaryScreenWidthKey}}" >-->
