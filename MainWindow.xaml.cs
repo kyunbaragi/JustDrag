@@ -126,5 +126,12 @@ namespace JustDrag
         /*
          *  @todo 드래그 하던 도중 ESC 누르면 드래그 한 거 취소하고 Controller로 돌아가기
          */
+        protected void MainWindow_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }
