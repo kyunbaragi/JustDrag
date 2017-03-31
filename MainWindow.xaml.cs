@@ -103,21 +103,24 @@ namespace JustDrag
             isClicked = false;
             test++; // 테스트용 작성자가 곧 지울 예정
 
-            using (var screenBmp = new Bitmap((int)rectDraged.Rect.Width, (int)rectDraged.Rect.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb))
-            {
-                using (var bmpGraphics = Graphics.FromImage(screenBmp))
-                {
-                    bmpGraphics.CopyFromScreen((int)rectDraged.Rect.Left, (int)rectDraged.Rect.Top, 0, 0, 
-                        new System.Drawing.Size((int)rectDraged.Rect.Width, (int)rectDraged.Rect.Height));
 
-                    Imaging.CreateBitmapSourceFromHBitmap(
-                        screenBmp.GetHbitmap(),
-                        IntPtr.Zero,
-                        Int32Rect.Empty,
-                        BitmapSizeOptions.FromEmptyOptions());
+            if( rectDraged.Rect.Width > 0 && rectDraged.Rect.Height > 0 )
+            {
+                using (var screenBmp = new Bitmap((int)rectDraged.Rect.Width, (int)rectDraged.Rect.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb))
+                {
+                    using (var bmpGraphics = Graphics.FromImage(screenBmp))
+                    {
+                        bmpGraphics.CopyFromScreen((int)rectDraged.Rect.Left, (int)rectDraged.Rect.Top, 0, 0,
+                            new System.Drawing.Size((int)rectDraged.Rect.Width, (int)rectDraged.Rect.Height));
+
+                        Imaging.CreateBitmapSourceFromHBitmap(
+                            screenBmp.GetHbitmap(),
+                            IntPtr.Zero,
+                            Int32Rect.Empty,
+                            BitmapSizeOptions.FromEmptyOptions());
+                    }
                 }
             }
-
             /*
              * @todo 오른쪽 마우스가 클릭 됐을 때는 필터링
              */
