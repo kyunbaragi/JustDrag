@@ -25,6 +25,8 @@ namespace JustDrag
         private Rect myRect;
         private System.Windows.Point ptClicked;
 
+        private BitmapSource capturedBitmap;
+
         private int test = 0; // 테스트용 작성자가 곧 지울 예정
 
         public int getTest() // 테스트용 작성자가 곧 지울 예정
@@ -106,6 +108,7 @@ namespace JustDrag
 
             if (rectDraged.Rect.Width >= 1 && rectDraged.Rect.Height >= 1)
             {
+                BitmapSource bitmapSrc;
                 using (var screenBmp = new Bitmap((int)rectDraged.Rect.Width, (int)rectDraged.Rect.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb))
                 {
                     using (var bmpGraphics = Graphics.FromImage(screenBmp))
@@ -113,13 +116,16 @@ namespace JustDrag
                         bmpGraphics.CopyFromScreen((int)rectDraged.Rect.Left, (int)rectDraged.Rect.Top, 0, 0,
                             new System.Drawing.Size((int)rectDraged.Rect.Width, (int)rectDraged.Rect.Height));
 
-                        Imaging.CreateBitmapSourceFromHBitmap(
+                        bitmapSrc = Imaging.CreateBitmapSourceFromHBitmap(
                             screenBmp.GetHbitmap(),
                             IntPtr.Zero,
                             Int32Rect.Empty,
                             BitmapSizeOptions.FromEmptyOptions());
                     }
                 }
+
+                Window capturedWindow = new CapturedWindow(bitmapSrc);
+                capturedWindow.Show();
             }
             /*
              * @todo 오른쪽 마우스가 클릭 됐을 때는 필터링
@@ -136,6 +142,16 @@ namespace JustDrag
 
             if (Keyboard.Modifiers == ModifierKeys.Alt && e.SystemKey == Key.F4)
                 Application.Current.Shutdown();
+        }
+
+        public void SetCapturedBitmap(BitmapSource bitmap)
+        {
+            this.capturedBitmap = bitmap;
+        }
+
+        public BitmapSource GetCapturedBitmap()
+        {
+            return this.capturedBitmap;
         }
     }
 }
