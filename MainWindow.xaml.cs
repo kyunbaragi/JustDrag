@@ -10,8 +10,9 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing;
+using System.Windows.Interop;
 
 namespace JustDrag
 {
@@ -22,7 +23,7 @@ namespace JustDrag
     {
         private bool isClicked = false;
         private Rect myRect;
-        private Point ptClicked;
+        private System.Windows.Point ptClicked;
 
         private int test = 0; // 테스트용 작성자가 곧 지울 예정
 
@@ -35,7 +36,7 @@ namespace JustDrag
         {
             InitializeComponent();
 
-            rectScreen.Rect = new Rect(0, 0, SystemParameters.MaximumWindowTrackWidth, SystemParameters.MaximumWindowTrackHeight);
+            rectScreen.Rect = new Rect(SystemParameters.VirtualScreenLeft, SystemParameters.VirtualScreenTop, SystemParameters.MaximumWindowTrackWidth, SystemParameters.MaximumWindowTrackHeight);
             rectDraged.Rect = myRect = new Rect(0, 0, 0, 0);
 
             base.MouseDown += MainWindow_MouseDown;
@@ -101,15 +102,26 @@ namespace JustDrag
         {
             isClicked = false;
             test++; // 테스트용 작성자가 곧 지울 예정
-            
-            /*
-             * @todo Screen에서 드래그 한 부분 이미지 복사하기, 방법 찾아보기
-             */
-            
-            /*
-             * @todo 오른쪽 마우스가 클릭 됐을 때는 필터링
-             */
+
+            using (var screenBmp = new Bitmap((int)rectDraged.Rect.Width, (int)rectDraged.Rect.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb))
+            {
+                using (var bmpGraphics = Graphics.FromImage(screenBmp))
+                {
+                    bmpGraphics.CopyFromScreen((int)rectDraged.Rect.Left, (int)rectDraged.Rect.Top, 0, 0, 
+                        new System.Drawing.Size((int)rectDraged.Rect.Width, (int)rectDraged.Rect.Height));
+
+                    Imaging.CreateBitmapSourceFromHBitmap(
+                        screenBmp.GetHbitmap(),
+                        IntPtr.Zero,
+                        Int32Rect.Empty,
+                        BitmapSizeOptions.FromEmptyOptions());
+                }
+            }
         }
+        /*
+         * @todo 오른쪽 마우스가 클릭 됐을 때는 필터링
+         */
+    }
 
         /*
          *  @todo 드래그 하던 도중 ESC 누르면 드래그 한 거 취소하고 Controller로 돌아가기
