@@ -69,7 +69,7 @@ namespace JustDrag
                 w = e.GetPosition(this).X - ptClicked.X;
                 h = e.GetPosition(this).Y - ptClicked.Y;
 
-                if (w < 0)
+                if (w < 0) 
                 {
                     myRect.X = x + w < 0 ? 0 : x + w;
                     myRect.Width = -w;
@@ -91,7 +91,7 @@ namespace JustDrag
                     myRect.Y = y;
                     myRect.Height = h;
                 }
-
+                
                 rectDraged.Rect = myRect;
             }
             e.Handled = true;
@@ -101,11 +101,11 @@ namespace JustDrag
         {
             isClicked = false;
             test++; // 테스트용 작성자가 곧 지울 예정
-
+            
             /*
              * @todo Screen에서 드래그 한 부분 이미지 복사하기, 방법 찾아보기
              */
-
+            
             /*
              * @todo 오른쪽 마우스가 클릭 됐을 때는 필터링
              */
