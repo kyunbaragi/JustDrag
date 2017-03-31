@@ -35,7 +35,7 @@ namespace JustDrag
         {
             InitializeComponent();
 
-            rectScreen.Rect = new Rect(0, 0, SystemParameters.MaximumWindowTrackWidth, SystemParameters.MaximumWindowTrackHeight);
+            rectScreen.Rect = new Rect(SystemParameters.VirtualScreenLeft, SystemParameters.VirtualScreenTop, SystemParameters.MaximumWindowTrackWidth, SystemParameters.MaximumWindowTrackHeight);
             rectDraged.Rect = myRect = new Rect(0, 0, 0, 0);
 
             base.MouseDown += MainWindow_MouseDown;
