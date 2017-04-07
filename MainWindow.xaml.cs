@@ -154,7 +154,7 @@ namespace JustDrag
                 Window capturedWindow = new CapturedWindow(bitmapSrc);
 
                 this.Hide();
-                capturedWindow.Show();
+                capturedWindow.ShowDialog();
                 this.Close();
             }
             /*
