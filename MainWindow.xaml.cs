@@ -32,6 +32,8 @@ namespace JustDrag
 
         private int test = 0; // 테스트용 작성자가 곧 지울 예정
 
+        private static const double ADJUST_SCREEN_PIXEL = -6.5;
+
         public int getTest() // 테스트용 작성자가 곧 지울 예정
         {
             return this.test;
@@ -51,8 +53,12 @@ namespace JustDrag
             InitializeComponent();
             CalculateDpiFactors();
 
+            PresentationSource source = PresentationSource.FromVisual(this);
+
             rectScreen.Rect = new Rect(0, 0, SystemParameters.PrimaryScreenWidth, SystemParameters.PrimaryScreenHeight);
             rectDraged.Rect = myRect = new Rect(0, 0, 0, 0);
+
+            
 
             base.MouseDown += MainWindow_MouseDown;
             base.MouseMove += MainWindow_MouseMove;
@@ -127,8 +133,8 @@ namespace JustDrag
                 {
                     using (var bmpGraphics = Graphics.FromImage(screenBmp))
                     {
-                        
-                        bmpGraphics.CopyFromScreen((int)(rectDraged.Rect.Left * dpiX), (int)(rectDraged.Rect.Top * dpiY), 0, 0,
+
+                        bmpGraphics.CopyFromScreen((int)(rectDraged.Rect.Left * dpiX + ADJUST_SCREEN_PIXEL), (int)(rectDraged.Rect.Top * dpiY + ADJUST_SCREEN_PIXEL), 0, 0,
                             new System.Drawing.Size((int)(rectDraged.Rect.Width * dpiX), (int)(rectDraged.Rect.Height * dpiY)));
                         
 
