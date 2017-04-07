@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JustDrag" ResizeMode="NoResize" 
         mc:Ignorable="d" Title="JustDrag" Height="80" Width="320" 
-        Icon="./icon/just_drag.ico">
+        Icon="./icon/just_drag.ico" KeyDown="Controller_KeyDown">
             
     
     <Window.Resources>
@@ -27,12 +27,6 @@
                 <TextBlock Text="새로 만들기(N)" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </StackPanel>
         </Button>
-        <!--<Button x:Name="btnTransform" Grid.Column ="1">
-            <StackPanel Orientation="Horizontal">
-                <Image Name="transImg" Source="icon/translate.png" Margin="0, 5, 5, 5"/>
-                <TextBlock Text="Img2Txt" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </StackPanel>
-        </Button>-->
         <Button x:Name="btnReset" Grid.Column ="1" Background="White">
             <StackPanel Orientation="Horizontal">
                 <Image Name="cancelImg" Source="./icon/cancel.png" Margin="0, 8, 8, 8"/>
@@ -48,23 +42,3 @@
     </Grid>
 </Window>
 
-<!--<Button.Template>
-    <ControlTemplate>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="3*"/>
-            </Grid.ColumnDefinitions>
-            <Image Source="icon/cut.png" Grid.Column="0" Margin="5, 5, 5, 5"/>
-            <TextBlock Text="Capture" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Grid>
-        <ControlTemplate.Triggers>
-            <Trigger Property="Button.IsMouseOver" Value="True">
-
-            </Trigger>
-            <Trigger Property="Button.IsPressed" Value="True">
-
-            </Trigger>
-        </ControlTemplate.Triggers>
-    </ControlTemplate>
-</Button.Template>-->    

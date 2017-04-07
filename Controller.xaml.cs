@@ -46,7 +46,36 @@ namespace JustDrag
              * mainWindow.ShowDialog()로 MainWindow에서 변경되는 값들은 멤버 변수에 저장해
              * 여기(Controller)에서 mainWindow.GetXXX() 식으로 사용하면 될 듯 함
              */
-            MessageBox.Show("테스트 : " + mainWindow.getTest()); // 테스트용 작성자가 곧 삭제할 예정
+        }
+
+        /* 
+         * @author  한윤균
+         * @date    2017-04-07
+         * @ref     
+         * @brief   Alt + Key 동시 입력에 대한  Controller Window의 단축키 제어
+         * @details 해당 버튼에 대한 eventLIstener를 내부적으로 호출
+         */
+        bool AltKeyPressed = false;
+        private void Controller_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (AltKeyPressed)
+            {
+                AltKeyPressed = false;
+                if (e.SystemKey == Key.N)
+                {
+                    btnCaptureClick(sender, new RoutedEventArgs()); // call btnCaptureClick listener
+                    Console.WriteLine("Alt+N is pressed!");
+                }
+                if (e.SystemKey == Key.C) Console.WriteLine("Alt+C is pressed!");
+                if (e.SystemKey == Key.O) Console.WriteLine("Alt+O is pressed!");
+
+                // Others ...
+            }
+
+            if (e.SystemKey == Key.LeftAlt || e.SystemKey == Key.RightAlt)
+            {
+                AltKeyPressed = true;
+            }
         }
     }
 }
