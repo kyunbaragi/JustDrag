@@ -25,6 +25,9 @@ namespace JustDrag
         private Rect myRect;
         private System.Windows.Point ptClicked;
 
+        private double dpiX;
+        private double dpiY;
+
         private BitmapSource capturedBitmap;
 
         private int test = 0; // 테스트용 작성자가 곧 지울 예정
@@ -34,11 +37,21 @@ namespace JustDrag
             return this.test;
         }
 
+        private void CalculateDpiFactors()
+        {
+            Window MainWindow = Application.Current.MainWindow;
+            PresentationSource MainWindowPresentationSource = PresentationSource.FromVisual(MainWindow);
+            Matrix m = MainWindowPresentationSource.CompositionTarget.TransformToDevice;
+            dpiX = m.M11;
+            dpiY = m.M22;
+        }
+
         public MainWindow()
         {
             InitializeComponent();
+            CalculateDpiFactors();
 
-            rectScreen.Rect = new Rect(SystemParameters.VirtualScreenLeft, SystemParameters.VirtualScreenTop, SystemParameters.MaximumWindowTrackWidth, SystemParameters.MaximumWindowTrackHeight);
+            rectScreen.Rect = new Rect(0, 0, SystemParameters.PrimaryScreenWidth, SystemParameters.PrimaryScreenHeight);
             rectDraged.Rect = myRect = new Rect(0, 0, 0, 0);
 
             base.MouseDown += MainWindow_MouseDown;
@@ -69,8 +82,8 @@ namespace JustDrag
             {
                 x = ptClicked.X;
                 y = ptClicked.Y;
-                w = e.GetPosition(this).X - ptClicked.X;
-                h = e.GetPosition(this).Y - ptClicked.Y;
+                w = (e.GetPosition(this).X - ptClicked.X);
+                h = (e.GetPosition(this).Y - ptClicked.Y);
 
                 if (w < 0)
                 {
@@ -109,12 +122,20 @@ namespace JustDrag
             if (rectDraged.Rect.Width >= 1 && rectDraged.Rect.Height >= 1)
             {
                 BitmapSource bitmapSrc;
-                using (var screenBmp = new Bitmap((int)rectDraged.Rect.Width, (int)rectDraged.Rect.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb))
+                using (var screenBmp = new Bitmap((int)(rectDraged.Rect.Width * dpiX), (int)(rectDraged.Rect.Height * dpiY), System.Drawing.Imaging.PixelFormat.Format32bppArgb))
+                //using (var screenBmp = new Bitmap((int)(SystemParameters.PrimaryScreenWidth * dpiX), (int)(SystemParameters.PrimaryScreenHeight * dpiY), System.Drawing.Imaging.PixelFormat.Format32bppArgb))
                 {
                     using (var bmpGraphics = Graphics.FromImage(screenBmp))
                     {
-                        bmpGraphics.CopyFromScreen((int)rectDraged.Rect.Left, (int)rectDraged.Rect.Top, 0, 0,
-                            new System.Drawing.Size((int)rectDraged.Rect.Width, (int)rectDraged.Rect.Height));
+                        
+                        bmpGraphics.CopyFromScreen((int)(rectDraged.Rect.Left * dpiX), (int)(rectDraged.Rect.Top * dpiY), 0, 0,
+                            new System.Drawing.Size((int)(rectDraged.Rect.Width * dpiX), (int)(rectDraged.Rect.Height * dpiY)));
+                        
+
+                        /*
+                        bmpGraphics.CopyFromScreen(0, 0, 0, 0,
+                            new System.Drawing.Size((int)(SystemParameters.PrimaryScreenWidth * dpiX), (int)(SystemParameters.PrimaryScreenHeight * dpiY)));
+                        */
 
                         bitmapSrc = Imaging.CreateBitmapSourceFromHBitmap(
                             screenBmp.GetHbitmap(),
