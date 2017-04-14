@@ -62,14 +62,16 @@ namespace JustDrag
             /*
              * @todo 오른쪽 마우스가 클릭 됐을 때는 필터링
              */
+            if (e.LeftButton == MouseButtonState.Pressed && e.RightButton == MouseButtonState.Released)
+            {
+                isClicked = true;
 
-            isClicked = true;
+                ptClicked.X = myRect.X = e.GetPosition(this).X;
+                ptClicked.Y = myRect.Y = e.GetPosition(this).Y;
+                myRect.Width = myRect.Height = 1;
 
-            ptClicked.X = myRect.X = e.GetPosition(this).X;
-            ptClicked.Y = myRect.Y = e.GetPosition(this).Y;
-            myRect.Width = myRect.Height = 1;
-
-            rectDraged.Rect = myRect;
+                rectDraged.Rect = myRect;
+            }
         }
 
         protected void MainWindow_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
@@ -116,7 +118,7 @@ namespace JustDrag
             isClicked = false;
             test++; // 테스트용 작성자가 곧 지울 예정
 
-            if (rectDraged.Rect.Width >= 1 && rectDraged.Rect.Height >= 1)
+            if (e.RightButton == MouseButtonState.Released && rectDraged.Rect.Width >= 1 && rectDraged.Rect.Height >= 1)
             {
                 BitmapSource bitmapSrc;
                 using (var screenBmp = new Bitmap((int)(rectDraged.Rect.Width * dpiX), (int)(rectDraged.Rect.Height * dpiY), System.Drawing.Imaging.PixelFormat.Format32bppArgb))
