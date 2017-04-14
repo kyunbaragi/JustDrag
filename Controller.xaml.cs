@@ -22,6 +22,17 @@ namespace JustDrag
         public Controller()
         {
             InitializeComponent();
+            
+            string dataPath = @"C:/Users/Administrator/Documents/Visual Studio 2015/Projects/JustDrag/JustDrag/tessdata/";
+            string language = @"eng";
+
+            using (var api = new Tesseract.TessBaseAPI(dataPath, language))
+            {
+                api.Process("C:/Users/Administrator/Documents/Visual Studio 2015/Projects/JustDrag/JustDrag/multiple_numbers.png", true);
+                string text = api.GetUTF8Text();
+
+                Console.WriteLine(text);
+            }
         }
 
         private void btnCaptureClick(object sender, RoutedEventArgs e)
